@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { Box, SimpleGrid, Text, space } from "@chakra-ui/react";
 import { CheckCircleIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   return (
@@ -29,38 +31,38 @@ function Navbar() {
       </Box>
       <Box></Box>
       <Box>
-      <SimpleGrid
-        columns={[3, 3, 3, 3]}
-        alignItems={"center"}
-        spacing={[2, 2, 3, 1]}
-      >
-        <Link to={"/product"}>
-          <Text
-            fontWeight={"bold"}
-            border={"1px solid blueviolet"}
-            padding={"5px"}
-            borderRadius={"5px"}
-            _hover={{ bg: "#E0B0FF", color: "#ED0331" }}
-          >
-            <span>
-              <EditIcon boxSize={4} color="#ED0331" />
-            </span>{" "}
-            Products
-          </Text>
-        </Link>
-        <Text fontWeight={"bold"}>
+        <SimpleGrid
+          columns={[3, 3, 3, 3]}
+          alignItems={"center"}
+          spacing={[2, 2, 3, 1]}
+        >
+          <Link to={"/product"}>
+            <Text
+              fontWeight={"bold"}
+              border={"1px solid blueviolet"}
+              padding={"5px"}
+              borderRadius={"5px"}
+              _hover={{ bg: "#E0B0FF", color: "#ED0331" }}
+            >
+              <span>
+                <EditIcon boxSize={4} color="#ED0331" />
+              </span>{" "}
+              Products
+            </Text>
+          </Link>
+          {/* <Text fontWeight={"bold"}>
           <span>
             <ViewIcon boxSize={6} color="#ED0331" />
           </span>{" "}
-          Saves: 0
-        </Text>
-        <Text fontWeight={"bold"}>
+          Saves: {count}
+        </Text> */}
+          {/* <Text fontWeight={"bold"}>
           <span>
             <CheckCircleIcon boxSize={4} color="#ED0331" />
           </span>{" "}
           Likes: 0
-        </Text>
-      </SimpleGrid>
+        </Text> */}
+        </SimpleGrid>
       </Box>
     </SimpleGrid>
   );

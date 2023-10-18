@@ -6,68 +6,93 @@ import {
   SimpleGrid,
   SkeletonCircle,
   SkeletonText,
+  Text,
   useToast,
 } from "@chakra-ui/react";
 import Navbar from "../Components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const data = [
-  {
-    id: 654959,
-    title: "Pasta With Tuna",
-    image: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 511728,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 511729,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 5117210,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 5117211,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-];
+import axios from "axios";
+import { ViewIcon } from "@chakra-ui/icons";
 
 function Product() {
   const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState(0);
 
   const toast = useToast();
 
-  const handleLike = () => {
-    toast({
-      title: "Recipe Liked",
-      description: "You are Like Recipe's.",
-      status: "success",
-      position: "top",
-      duration: 5000,
-      isClosable: true,
-    });
+  useEffect(() => {
+    handleData();
+  }, [count]);
+
+  const handleData = () => {
+    setIsLoading(true);
+    axios
+      .get("http://localhost:8080/product/data")
+      .then((res) => {
+        console.log("use", res.data);
+        setData(res.data);
+        setCount(res.data.length);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log(err);
+        toast({
+          title: "Error",
+          description: "Something Went Wrong.",
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8080/product/delete/${id}`)
+      .then((res) => {
+        console.log(res);
+        toast({
+          title: "Recipe Deleted",
+          description: "You are deleted Recipe's.",
+          status: "success",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+        handleData();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <Box>
       <Navbar />
       <br />
-      <Heading size={"xl"} fontFamily={"sans-serif"} mt={"150px"}>
-        Saved Products
-      </Heading>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"baseline"}
+        width={["100%", "100%", "90%", "70%"]}
+        margin={"auto"}
+        p={"15px"}
+      >
+        <Box></Box>
+        <Heading size={"xl"} fontFamily={"sans-serif"} mt={"150px"}>
+          Saved Products
+        </Heading>
+        <Text fontWeight={"bold"}>
+          <span>
+            <ViewIcon boxSize={6} color="#ED0331" />
+          </span>{" "}
+          Saves: {count}
+        </Text>
+      </Box>
 
       <SimpleGrid
         columns={[1, 1, 2, 3]}
@@ -79,7 +104,7 @@ function Product() {
       >
         {data &&
           data.map((el) => (
-            <Box boxShadow={"2xl"} p={"15px"}>
+            <Box boxShadow={"2xl"} p={"15px"} key={el.id}>
               {isLoading ? (
                 <Box padding="6" boxShadow="lg" bg="white">
                   <SkeletonCircle size="10" />
@@ -97,20 +122,25 @@ function Product() {
                     {el.title}
                   </Heading>
                   <br />
-                  <Button
+                  {/* <Button
                     onClick={handleLike}
                     colorScheme="orange"
                     variant={"solid"}
                   >
                     Like
-                  </Button>
+                  </Button> */}
 
                   <Link to={`/product/${el.id}`}>
                     <Button colorScheme="green" variant={"solid"} ml={4}>
                       Details
                     </Button>
                   </Link>
-                  <Button colorScheme="red" variant={"solid"} ml={4}>
+                  <Button
+                    onClick={() => handleDelete(el._id)}
+                    colorScheme="red"
+                    variant={"solid"}
+                    ml={4}
+                  >
                     Delete
                   </Button>
                 </Box>

@@ -13,32 +13,32 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { BeatLoader } from "react-spinners";
-import axios from "axios"
-
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [text, setText] = useState("");
-  const [data, setData]=useState([])
+  const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const toast = useToast();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     //console.log(text);
-    try{
-      setIsLoading(true)
-      let res=await axios.post("http://localhost:8080/api/search", {text:text})
+    try {
+      setIsLoading(true);
+      let res = await axios.post("http://localhost:8080/api/search", {
+        text: text,
+      });
 
-
-      console.log("data",res.data)
-      setData(res.data)
-      setIsLoading(false)
-
-    }catch(err){
-      console.log(err)
-      setIsLoading(false)
+      console.log("data", res.data);
+      setData(res.data);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
       toast({
         title: "Error",
         description: "Something Went Wrong.",
@@ -47,25 +47,37 @@ function Dashboard() {
         duration: 5000,
         isClosable: true,
       });
-
     }
 
     setText("");
   };
 
-  const handleSave = () => {
-    toast({
-      title: "Recipe Saved",
-      description: "Your Recipe Save Successfully.",
-      status: "success",
-      position: "top",
-      duration: 5000,
-      isClosable: true,
-    });
+  const handleSave = (task) => {
+    axios
+      .post("http://localhost:8080/product/save", task)
+      .then((res) => {
+        console.log(res);
+        toast({
+          title: "Recipe Saved",
+          description: "Your Recipe Save Successfully.",
+          status: "success",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast({
+          title: "Error",
+          description: "Something Went Wrong",
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
   };
-
-  console.log("result", data)
-
   return (
     <Box>
       <Navbar />
@@ -93,7 +105,12 @@ function Dashboard() {
             Search
           </Button>
         ) : (
-          <Button colorScheme="blue" variant={"solid"} onClick={handleSubmit} isDisabled={text==""}>
+          <Button
+            colorScheme="blue"
+            variant={"solid"}
+            onClick={handleSubmit}
+            isDisabled={text == ""}
+          >
             Search
           </Button>
         )}
@@ -123,13 +140,15 @@ function Dashboard() {
                 </Box>
               ) : (
                 <Box key={el.id}>
-                  <Image w={"100%"} src={el.image} />
+                  <Link to="/product">
+                    <Image w={"100%"} src={el.image} />
+                  </Link>
                   <Heading size={"md"} mt={"10px"}>
                     {el.title}
                   </Heading>
                   <br />
                   <Button
-                    onClick={handleSave}
+                    onClick={() => handleSave(el)}
                     colorScheme="orange"
                     variant={"solid"}
                   >
