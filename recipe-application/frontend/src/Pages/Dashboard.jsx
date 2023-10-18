@@ -15,38 +15,6 @@ import {
 import { BeatLoader } from "react-spinners";
 import axios from "axios"
 
-const sdata = [
-  {
-    id: 654959,
-    title: "Pasta With Tuna",
-    image: "https://spoonacular.com/recipeImages/654959-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 511728,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 511729,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 5117210,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-  {
-    id: 5117211,
-    title: "Pasta Margherita",
-    image: "https://spoonacular.com/recipeImages/511728-312x231.jpg",
-    imageType: "jpg",
-  },
-];
 
 function Dashboard() {
   const [text, setText] = useState("");
