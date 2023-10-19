@@ -76,7 +76,7 @@ function Product() {
       <br />
       <Box
         display={"flex"}
-        justifyContent={"space-between"}
+        justifyContent={"space-around"}
         alignItems={"baseline"}
         width={["100%", "100%", "90%", "70%"]}
         margin={"auto"}

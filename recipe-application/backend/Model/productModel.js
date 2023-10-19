@@ -4,7 +4,8 @@ const productSchema=mongoose.Schema({
     id:Number,
     title:String,
     image:String,
-    imageType:String
+    imageType:String,
+    userID:Number
 
 },{
     versionKey:false

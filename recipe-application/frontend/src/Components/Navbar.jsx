@@ -19,7 +19,7 @@ function Navbar() {
       color={"blue.600"}
     >
       <Box>
-        <Link to={"/"}>
+        <Link to={"/home"}>
           <Text
             fontSize={["4xl", "4xl", "3xl", "3xl"]}
             fontFamily={"cursive"}

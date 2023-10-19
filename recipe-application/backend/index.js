@@ -1,8 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const { connection } = require("./db");
 const { productRouter } = require("./Controller/ProductRouter");
+const { AuthModel } = require("./Model/authModel");
+const session = require("express-session");
+const { apiRouter } = require("./Controller/ApiRouter");
 require("dotenv").config();
 
 const app = express();
@@ -10,35 +15,85 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post("/api/search", async (req, res) => {
-  const { text } = req.body;
+app.use(
+  session({
+    secret: process.env.sessionKey,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
-  try {
-    let response = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.apiKey}&query=${text}`
-    );
+app.use(passport.initialize());
+app.use(passport.session());
 
-    res.status(200).send(response.data.results);
-  } catch (error) {
-    res.status(400).send(error);
-  }
+passport.serializeUser((user, done) => {
+  done(null, user.id);
 });
 
+passport.deserializeUser((id, done) => {
+  AuthModel.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.clientId,
+      clientSecret: process.env.clientSecret,
+      callbackURL: "/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      AuthModel.findOne({ googleId: profile.id })
+        .then((existingUser) => {
+          if (existingUser) {
+            done(null, existingUser);
+          } else {
+            const newUser = new AuthModel({
+              googleId: profile.id,
+              name: profile.displayName,
+              email: profile.emails[0].value,
+            });
+
+            newUser
+              .save()
+              .then((user) => {
+                done(null, user);
+              })
+              .catch((err) => {
+                done(err);
+              });
+          }
+        })
+        .catch((err) => {
+          done(err);
+        });
+    }
+  )
+);
+
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google"),
+  (req, res) => {
+    res.redirect("http://localhost:3000/home");
+  }
+);
+
+
+
+app.use("/api", apiRouter)
 app.use("/product", productRouter);
 
-app.get("/api/singleproduct/:id", async (req, res) => {
-  const { id } = req.params;
 
-  try {
-    let response = await axios.get(
-      `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${process.env.apiKey}`
-    );
-
-    res.status(200).send(response.data);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
 
 app.listen(process.env.port, async () => {
   try {
