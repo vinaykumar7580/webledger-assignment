@@ -28,7 +28,7 @@ This is a solo project for building an interactive recipe application using Reac
 
 - **Styling**: Application style is implemented using Chakra UI.
 
-### Deployment
+## Deployment
 
 Frontend part deploy's on vercel and backend part deploy's on cyclic.
 
@@ -36,12 +36,20 @@ Frontend part deploy's on vercel and backend part deploy's on cyclic.
 
 - **Backend URL**: 
 
-### Images
+## Images
+
+### Login Page
 
 ![Login Page](https://github.com/vinaykumar7580/webledger-assignment/blob/main/recipe-application/frontend/assets/recipe-auth.png?raw=true)
 
+### Dashboard
+
 ![Dashboard](https://github.com/vinaykumar7580/webledger-assignment/blob/main/recipe-application/frontend/assets/recipe-dashboard.png?raw=true)
 
+### Product Page
+
 ![Product Page](https://github.com/vinaykumar7580/webledger-assignment/blob/main/recipe-application/frontend/assets/recipe-product.png?raw=true)
+
+### Product Details Page
 
 ![Product Details Page](https://github.com/vinaykumar7580/webledger-assignment/blob/main/recipe-application/frontend/assets/recipe-productdetails.png?raw=true)
