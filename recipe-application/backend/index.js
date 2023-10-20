@@ -7,14 +7,16 @@ const { connection } = require("./db");
 const { productRouter } = require("./Controller/ProductRouter");
 const { AuthModel } = require("./Model/authModel");
 const session = require("express-session");
+const cookieParser = require('cookie-parser');
 const { apiRouter } = require("./Controller/ApiRouter");
+
 require("dotenv").config();
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
-
+app.use(cookieParser());
 app.use(
   session({
     secret: process.env.sessionKey,
