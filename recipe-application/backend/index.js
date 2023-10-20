@@ -28,6 +28,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//passport.js
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
