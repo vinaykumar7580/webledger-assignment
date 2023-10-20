@@ -32,15 +32,13 @@ function Login() {
           color={"white"}
           padding={"10px 20px"}
           fontSize={"25px"}
-          fontWeight={"bold"}
           borderRadius={"7px"}
           onClick={handleLogin}
         >
           <span>
-            <LockIcon boxSize={5} />
+            <LockIcon boxSize={5} marginRight={"10px"} />
           </span>
-          {"  "}
-          Google
+          <span>Google</span>
         </Button>
         <br />
       </Box>

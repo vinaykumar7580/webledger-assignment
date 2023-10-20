@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Recipe Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+This is a solo project for building an interactive recipe application using React for the frontend, Node.js (with Express) for the backend, and MongoDB as the database. The application allows users to search for recipes, view recipe details, and save their favorite recipes. It also integrates Google Authentication using the Passport.js library.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **User Authentication**: Users can login using their Google accounts.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Recipe Search**: Users can search for recipes based on name.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Recipe Details**: Detailed information about each recipe, including instructions and summary.
 
-### `npm test`
+- **Favorite Recipes**: Users can save their favorite recipes in database.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Responsive UI**: The user interface is designed to work on various devices and screen sizes.
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Frontend**: React for building the user interface.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Backend**: Node.js with Express for handling API requests.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Database**: MongoDB to store user data, recipes, and user preferences.
 
-### `npm run eject`
+- **Authentication**: Google Authentication is implemented using Passport.js.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Styling**: Application style is implemented using Chakra UI.
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Frontend part deploy's on vercel and backend part deploy's on cyclic.
 
-### `npm run build` fails to minify
+- **Frontend URL**: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Backend URL**: 
