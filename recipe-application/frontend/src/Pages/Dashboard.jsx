@@ -29,7 +29,7 @@ function Dashboard() {
     //console.log(text);
     try {
       setIsLoading(true);
-      let res = await axios.post("http://localhost:8080/api/search", {
+      let res = await axios.post("https://busy-rose-harp-seal-cape.cyclic.app/api/search", {
         text: text,
       });
 
@@ -54,7 +54,7 @@ function Dashboard() {
 
   const handleSave = (task) => {
     axios
-      .post("http://localhost:8080/product/save", task)
+      .post("https://busy-rose-harp-seal-cape.cyclic.app/product/save", task)
       .then((res) => {
         console.log(res);
         toast({

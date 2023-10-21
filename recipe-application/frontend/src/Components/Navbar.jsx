@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Box, SimpleGrid, Text, space } from "@chakra-ui/react";
-import { CheckCircleIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
+import { CheckCircleIcon, EditIcon, ViewIcon, LockIcon } from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 
 function Navbar() {
@@ -48,6 +48,20 @@ function Navbar() {
                 <EditIcon boxSize={4} color="#ED0331" />
               </span>{" "}
               Products
+            </Text>
+          </Link>
+          <Link to={"/"}>
+            <Text
+              fontWeight={"bold"}
+              border={"1px solid blueviolet"}
+              padding={"5px"}
+              borderRadius={"5px"}
+              _hover={{ bg: "#E0B0FF", color: "#ED0331" }}
+            >
+              <span>
+                <LockIcon boxSize={4} color="#ED0331" />
+              </span>{" "}
+              Logout
             </Text>
           </Link>
           {/* <Text fontWeight={"bold"}>

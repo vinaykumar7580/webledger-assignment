@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Login() {
   const handleLogin = () => {
-    window.location.href = "http://localhost:8080/auth/google";
+    window.location.href = "https://busy-rose-harp-seal-cape.cyclic.app/auth/google";
   };
 
   return (

@@ -29,7 +29,7 @@ function Product() {
   const handleData = () => {
     setIsLoading(true);
     axios
-      .get("http://localhost:8080/product/data")
+      .get("https://busy-rose-harp-seal-cape.cyclic.app/product/data")
       .then((res) => {
         console.log("use", res.data);
         setData(res.data);
@@ -52,7 +52,7 @@ function Product() {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8080/product/delete/${id}`)
+      .delete(`https://busy-rose-harp-seal-cape.cyclic.app/product/delete/${id}`)
       .then((res) => {
         console.log(res);
         toast({

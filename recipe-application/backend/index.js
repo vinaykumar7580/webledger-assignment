@@ -44,7 +44,7 @@ passport.use(
     {
       clientID: process.env.clientId,
       clientSecret: process.env.clientSecret,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "https://busy-rose-harp-seal-cape.cyclic.app/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       AuthModel.findOne({ googleId: profile.id })
@@ -87,7 +87,7 @@ app.get(
   "/auth/google/callback",
   passport.authenticate("google"),
   (req, res) => {
-    res.redirect("http://localhost:3000/home");
+    res.redirect("https://recipe-application-rho.vercel.app/home");
   }
 );
 

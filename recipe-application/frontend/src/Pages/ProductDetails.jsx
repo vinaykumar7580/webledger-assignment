@@ -29,7 +29,7 @@ function ProductDetails() {
   const handleGetData = () => {
     setIsLoading(true);
     axios
-      .get(`http://localhost:8080/api/singleproduct/${params.id}`)
+      .get(`https://busy-rose-harp-seal-cape.cyclic.app/api/singleproduct/${params.id}`)
       .then((res) => {
         setIsLoading(false);
         console.log(res.data);
