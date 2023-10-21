@@ -32,9 +32,9 @@ This is a solo project for building an interactive recipe application using Reac
 
 Frontend part deploy's on vercel and backend part deploy's on cyclic.
 
-- **Frontend URL**: 
+- **Frontend URL**: https://recipe-application-rho.vercel.app
 
-- **Backend URL**: 
+- **Backend URL**: https://busy-rose-harp-seal-cape.cyclic.app/
 
 ## Images
 
